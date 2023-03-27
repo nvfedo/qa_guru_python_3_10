@@ -1,3 +1,5 @@
+import os
+
 import allure
 from utils import attachments
 from selene import have, by
@@ -18,6 +20,8 @@ def test_successful():
         }
     }
     options.capabilities.update(selenoid_capabilities)
+    login = os.getenv('LOGIN')
+    password = os.getenv('PASSWORD')
     driver = webdriver.Remote(
         command_executor="https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
         options=options)
