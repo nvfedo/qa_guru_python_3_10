@@ -1,9 +1,8 @@
 import pytest
 import os
-from selene.support.shared import browser
+from selene import Config, Browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selene import Browser, Config
 from dotenv import load_dotenv
 from utils import attachments
 
@@ -30,12 +29,13 @@ def open_browser():
     password = os.getenv('PASSWORD')
 
     driver = webdriver.Remote(
-        command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
+        command_executor=F"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
         options=options
     )
-    browser.config.driver = driver
 
-    yield
+    browser = Browser(Config(driver))
+
+    yield browser
 
     attachments.add_html(browser)
     attachments.add_screenshot(browser)

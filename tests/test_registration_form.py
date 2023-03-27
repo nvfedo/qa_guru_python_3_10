@@ -1,15 +1,10 @@
-import os
-
 import allure
-from utils import attachments
 from selene import have, by
-from selene.support.shared import browser
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 
 
 @allure.title("Successful fill form")
-def test_successful():
+def test_student_registration_form(open_browser):
+    browser = open_browser
     first_name = "Nikita"
     second_name = "Fedotov"
 
