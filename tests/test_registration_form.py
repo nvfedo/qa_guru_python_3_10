@@ -10,23 +10,6 @@ from selenium.webdriver.chrome.options import Options
 
 @allure.title("Successful fill form")
 def test_successful():
-    options = Options()
-    selenoid_capabilities = {
-        "browserName": "chrome",
-        "browserVersion": "111.0",
-        "selenoid:options": {
-            "enableVNC": True,
-            "enableVideo": False
-        }
-    }
-    options.capabilities.update(selenoid_capabilities)
-    login = os.getenv('LOGIN')
-    password = os.getenv('PASSWORD')
-    driver = webdriver.Remote(
-        command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
-        options=options)
-
-    browser.config.driver = driver
     first_name = "Nikita"
     second_name = "Fedotov"
 
@@ -54,8 +37,3 @@ def test_successful():
 
     with allure.step("Check form results"):
         browser.element("#example-modal-sizes-title-lg").should(have.text("Thanks for submitting the form"))
-
-    attachments.add_html(browser)
-    attachments.add_screenshot(browser)
-    attachments.add_logs(browser)
-    attachments.add_video(browser)
