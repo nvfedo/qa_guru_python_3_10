@@ -17,7 +17,7 @@ def open_browser():
     options = Options()
     selenoid_capabilities = {
         "browserName": "chrome",
-        "browserVersion": "100.0",
+        "browserVersion": "99.0",
         "selenoid:options": {
             "enableVNC": True,
             "enableVideo": True
@@ -29,7 +29,7 @@ def open_browser():
     password = os.getenv('PASSWORD')
 
     driver = webdriver.Remote(
-        command_executor=F"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
+        command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
         options=options
     )
 
@@ -41,3 +41,4 @@ def open_browser():
     attachments.add_screenshot(browser)
     attachments.add_logs(browser)
     attachments.add_video(browser)
+    browser.quit()
