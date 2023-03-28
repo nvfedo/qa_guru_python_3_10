@@ -8,12 +8,12 @@ from dotenv import load_dotenv
 from utils import attachments
 
 
-@pytest.fixture(scope='session', autouse=True)
+@pytest.fixture(scope='session')
 def load_env():
     load_dotenv()
 
 
-@pytest.fixture(scope="function", autouse=True)
+@pytest.fixture(scope="function")
 def open_browser():
     options = Options()
     selenoid_capabilities = {
