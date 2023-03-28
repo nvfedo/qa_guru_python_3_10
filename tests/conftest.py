@@ -1,8 +1,8 @@
-import pytest
 import os
-from selene import Config, Browser
+import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selene import Browser, Config
 from dotenv import load_dotenv
 from utils import attachments
 
