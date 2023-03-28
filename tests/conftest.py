@@ -1,5 +1,6 @@
-import os
 import pytest
+import os
+from selene.support.shared import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selene import Browser, Config
@@ -32,8 +33,7 @@ def open_browser():
         command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
         options=options
     )
-
-    browser = Browser(Config(driver))
+    browser.config.driver = driver
 
     yield browser
 
